@@ -1,5 +1,7 @@
 # Terraform EKS module
 
+## Description
+
 Creating EKS Cluster via Terraform on AWS, followed by setting and deploying of applications on kubernetes-cluster
 
 ###Includes modules
@@ -39,7 +41,7 @@ Module uses [terraform-aws-eks](https://github.com/terraform-aws-modules/terrafo
 * helm
 * kubectl (For further management of the cluster)
 
-## Usage example
+## Usage
 
 ```hcl
 module "Cluster" {
@@ -107,7 +109,8 @@ module "helm_installs" {
 | asg_max_size | Maximum worker capacity in in cluster | string | 5 | no |
 | spot_price | Cost of spot instance. Value 1 equals one dollar. 0.01 equals one cent. Set this variable if you want run cluster on spot instances | string | 0.1 | no |
 | SimpleScaling_policys | A list of AS-policys. Trigger for scaling ASG. Only policy_type SimpleScaling | list | [] | no |
-| StepScaling_policys (off) | A list of AS-policys. Trigger for scaling ASG. Only policy_type StepScaling | list | [] | no |
+| StepScaling_policys | A list of AS-policys. Trigger for scaling ASG. Only policy_type StepScaling | list | [] | no |
+| SimpleAlarmScaling_policys | A list of AS-policys. Trigger for scaling ASG. Only policy_type SimpleScaling | list | [] | no |
 | TargetTracking_policys | A list of AS-policys. Trigger for scaling ASG. Only policy_type TargetTrackingScaling | list | [] | no |
 | charts | list of charts. Default values are taken in [this repository](https://github.com/helm/charts) | list | [{name  = "prometheus" chart = "stable/prometheus" }, { name  = "grafana" chart = "stable/grafana"}] | no |
 
@@ -150,9 +153,9 @@ module "helm_installs" {
 | StepScaling_ASG_policy_policy_type | List of The scaling policys type for StepScaling_ASG_policy |
 | TargetTracking_ASG_policy_policy_type | List of The scaling policys type for TargetTracking_ASG_policy |
 | default_secret_name | name of the default secret the is created and managed by the service |
-| chart | List of names-chart |
-| namespace | List of namespaces kubernetes |
-| version | List of chart versions |
+| chart | List of helm names-chart |
+| namespace | List of helm namespaces kubernetes |
+| version | List of helm chart versions |
 
 ## Table AMI
 
@@ -183,3 +186,15 @@ module "helm_installs" {
 | Asia Pacific (Seoul) | ap-northeast-2 | ami-08a87e0a7c32fa649 | ami-0d75b9ab57bfc8c9a |
 | Asia Pacific (Singapore) | ap-southeast-1 | ami-0ac3510e44b5bf8ef | ami-0ecce0670cb66d17b |
 | Asia Pacific (Sydney) | ap-southeast-2 | ami-0d2c929ace88cfebe | ami-03b048bd9d3861ce9 |
+
+## Terraform versions
+Terraform v0.11.11
+
+## Contributing
+
+
+## License
+Apache
+
+## Authors
+Lean Delivery Team team@lean-delivery.com

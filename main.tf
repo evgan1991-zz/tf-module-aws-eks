@@ -7,7 +7,7 @@ locals {
 }
 
 module "Cluster" {
-  source       = "terraform-aws-modules/eks/aws"
+  source       = "github.com/terraform-aws-modules/terraform-aws-eks"
   cluster_name = "${var.project}-${var.environment}"
   vpc_id       = "${var.vpc_id}"
   subnets      = "${var.subnets_id}"

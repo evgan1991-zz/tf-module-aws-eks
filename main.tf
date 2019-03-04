@@ -53,11 +53,3 @@ module "AS_Polisys" {
   StepScaling_policys        = "${var.StepScaling_policys}"
   TargetTracking_policys     = "${var.TargetTracking_policys}"
 }
-
-module "helm_installs" {
-  source         = "helm_installs/"
-  cluster_name   = "${module.Cluster.cluster_id}"
-  host           = "${module.Cluster.cluster_endpoint}"
-  ca_certificate = "${base64decode(module.Cluster.cluster_certificate_authority_data)}"
-  charts         = "${var.charts}"
-}

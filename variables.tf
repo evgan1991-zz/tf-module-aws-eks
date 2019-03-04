@@ -169,19 +169,3 @@ variable "TargetTracking_policys" {
   type        = "list"
   default     = []
 }
-
-variable "charts" {
-  description = "Installing soft"
-  type        = "list"
-
-  default = [
-    {
-      name  = "prometheus"
-      chart = "stable/prometheus"
-    },
-    {
-      name  = "grafana"
-      chart = "stable/grafana"
-    },
-  ]
-}

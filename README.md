@@ -7,7 +7,6 @@ Creating EKS Cluster via Terraform on AWS, followed by setting and deploying of 
 ### Includes modules
  * terraform-aws-modules/eks/aws
  * AS_policys
- * helm_installs
 
 The module allows you to deploy an EKS cluster in AWS. Automatically will be created:
 
@@ -32,13 +31,8 @@ Module uses [terraform-aws-eks](https://github.com/terraform-aws-modules/terrafo
 * autoscaling group name (Can take from eks-orchestration)
 * lists of scaling policys (4 types: SimpleScaling_policys, SimpleAlarmScaling_policys, StepScaling_policys, TargetTracking_policys)
 
-### For deploying applications (module helm_installs)
-* cluster_name (Can take from eks-orchestration)
-* charts: list of applications
-
 ### Also you need to have
 * awscli
-* helm
 * kubectl (For further management of the cluster)
 
 ## Usage
@@ -65,18 +59,6 @@ module "AS_Polisys" {
       policy_type               = "SimpleScaling"
       cooldown                  = "300"
       scaling_adjustment        = "0"
-    },
-  ]
-}
-
-module "helm_installs" {
-  source = "helm_installs/"
-  cluster_name = "${module.Cluster.cluster_id}"
-
-  charts = [
-    {
-      name  = "nginx-ingress"
-      chart = "stable/nginx-ingress"
     },
   ]
 }
@@ -148,7 +130,6 @@ Use specified AMI for parameter ami_id
 | StepScaling_policys | A list of AS-policys. Trigger for scaling ASG. Only policy_type StepScaling | list | [] | no |
 | SimpleAlarmScaling_policys | A list of AS-policys. Trigger for scaling ASG. Only policy_type SimpleScaling | list | [] | no |
 | TargetTracking_policys | A list of AS-policys. Trigger for scaling ASG. Only policy_type TargetTrackingScaling | list | [] | no |
-| charts | list of charts. Default values are taken in [this repository](https://github.com/helm/charts) | list | [{name  = "prometheus" chart = "stable/prometheus" }, { name  = "grafana" chart = "stable/grafana"}] | no |
 
 ## Outputs
 
@@ -188,10 +169,6 @@ Use specified AMI for parameter ami_id
 | SimpleAlarmScaling_ASG_policy_policy_type | List of The scaling policys type for SimpleAlarmScaling_ASG_policy |
 | StepScaling_ASG_policy_policy_type | List of The scaling policys type for StepScaling_ASG_policy |
 | TargetTracking_ASG_policy_policy_type | List of The scaling policys type for TargetTracking_ASG_policy |
-| default_secret_name | name of the default secret the is created and managed by the service |
-| chart | List of helm names-chart |
-| namespace | List of helm namespaces kubernetes |
-| version | List of helm chart versions |
 
 ## Terraform versions
 Terraform v0.11.11

@@ -47,21 +47,6 @@ module "Cluster" {
       scaling_adjustment        = "0"
     },
   ]
-
-  charts = [
-    {
-      name  = "prometheus"
-      chart = "stable/prometheus"
-    },
-    {
-      name  = "grafana"
-      chart = "stable/grafana"
-    },
-    {
-      name  = "nginx-ingress"
-      chart = "stable/nginx-ingress"
-    },
-  ]
 }
 
 output "cluster_certificate_authority_data" {
@@ -198,20 +183,4 @@ output "StepScaling_ASG_policy_policy_type" {
 
 output "TargetTracking_ASG_policy_policy_type" {
   value = "${module.Cluster.TargetTracking_ASG_policy_policy_type}"
-}
-
-output "default_secret_name" {
-  value = "${module.Cluster.default_secret_name}"
-}
-
-output "chart" {
-  value = "${module.Cluster.chart}"
-}
-
-output "namespace" {
-  value = "${module.Cluster.namespace}"
-}
-
-output "version" {
-  value = "${module.Cluster.version}"
 }

@@ -167,23 +167,3 @@ output "TargetTracking_ASG_policy_policy_type" {
   value       = "${module.AS_Polisys.TargetTracking_ASG_policy_policy_type}"
   description = "List of The scaling policys type for TargetTracking_ASG_policy"
 }
-
-output "default_secret_name" {
-  value       = "${module.helm_installs.default_secret_name}"
-  description = "Name of the default secret the is created and managed by the service"
-}
-
-output "chart" {
-  value       = "${module.helm_installs.chart}"
-  description = "List of The names of the chart."
-}
-
-output "namespace" {
-  value       = "${module.helm_installs.namespace}"
-  description = "List of Namespaces is the kubernetes namespace of the release."
-}
-
-output "version" {
-  value       = "${module.helm_installs.version}"
-  description = "List of A SemVer-s 2 conformant version string of the chart."
-}
